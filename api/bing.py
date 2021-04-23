@@ -1,3 +1,4 @@
+from http import server
 from http.server import BaseHTTPRequestHandler
 import requests
 
@@ -24,7 +25,7 @@ class handler(BaseHTTPRequestHandler):
             </html>
         """ % (imageUrl)
         self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
+        self.send_header('Content-type', 'text/html')
         self.end_headers()
-        self.wfile.write(template.encode())
+        self.wfile.write(template.encode("utf-8"))
         return

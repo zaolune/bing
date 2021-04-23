@@ -1,6 +1,7 @@
+from http import server
 from http.server import BaseHTTPRequestHandler
 import requests
-import shutil
+
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -23,9 +24,9 @@ class handler(BaseHTTPRequestHandler):
         #     </body>
         #     </html>
         # """ % (imageUrl)
-        self.send_response(200)
-        self.send_header('Content-type', 'image/jpeg')
+        # self.send_response(200)
+        # self.send_header('Content-type', 'text/html')
+        self.send_response(302)
+        self.send_header('Location', imageUrl)
         self.end_headers()
-        with open(imageUrl,'rb') as images:
-            shutil.copyfileobj(images, self.wfile)
         return

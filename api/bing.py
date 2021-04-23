@@ -1,6 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 import requests
-import json
 
 
 class handler(BaseHTTPRequestHandler):
@@ -27,5 +26,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write(json.dumps(template))
+        self.wfile.write(template.encode())
         return

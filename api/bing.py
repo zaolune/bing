@@ -10,5 +10,5 @@ class handler(BaseHTTPRequestHandler):
         imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
-        self.wfile.write(imageUrl)
+        self.wfile.write(imageUrl.encode())
         return

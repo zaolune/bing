@@ -18,11 +18,14 @@ class handler(BaseHTTPRequestHandler):
         return recordName
 
     def set_Record(self, json):
-        recordName = self.get_Current_FilesName()
-        with open(join('data', recordName), 'w') as files:
-            files.write(json)
-        print(recordName+"saved successfully!")
-        files.close()
+        try:
+            recordName = self.get_Current_FilesName()
+            with open(join('data', recordName), 'w') as files:
+                files.write(json)
+            print(recordName+"saved successfully!")
+            files.close()
+        except:
+            print(recordName+"saved failed!")
         return
 
     def get_Current_Record(self):

@@ -22,10 +22,10 @@ class handler(BaseHTTPRequestHandler):
             recordName = self.get_Current_FilesName()
             with open(join('data', recordName), 'w') as files:
                 files.write(json)
-            print(recordName+"saved successfully!")
+            print(recordName+" saved successfully!")
             files.close()
         except:
-            print(recordName+"saved failed!")
+            print(recordName+" saved failed!")
         return
 
     def get_Current_Record(self):
@@ -40,6 +40,9 @@ class handler(BaseHTTPRequestHandler):
         return os.path.exists(join('data', recordName))
 
     def do_GET(self):
+        with open(join('data','root.txt'),'r') as f:
+            print(f.read())
+        f.close()
         if not self.is_saved():
             res = requests.get(
                 "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")

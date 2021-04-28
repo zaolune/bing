@@ -40,20 +40,24 @@ class handler(BaseHTTPRequestHandler):
         return os.path.exists(join('data', recordName))
 
     def do_GET(self):
-        with open(join('data','root.txt'),'r') as f:
-            print(f.read())
-        f.close()
-        if not self.is_saved():
-            res = requests.get(
+        # with open(join('data','root.txt'),'r') as f:
+        #     print(f.read())
+        # f.close()
+        # if not self.is_saved():
+        #     res = requests.get(
+        #         "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
+        #     res = res.json()
+        #     self.set_Record(res)
+        #     imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
+        #     print(imageUrl)
+        #     return self.set_Header(imageUrl)
+        # else:
+        #     res = self.get_Current_Record()
+        #     imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
+        #     print(imageUrl)
+        #     return self.set_Header(imageUrl)
+        res = requests.get(
                 "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
-            res = res.json()
-            self.set_Record(res)
-            imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
-            print(imageUrl)
-            return self.set_Header(imageUrl)
-        else:
-            res = self.get_Current_Record()
-            imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
-            print(imageUrl)
-            return self.set_Header(imageUrl)
-
+        res = res.json()
+        imageUrl = "https://cn.bing.com"+res["images"][0]["url"]
+        return self.set_Header(imageUrl)
